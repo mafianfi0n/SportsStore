@@ -1,7 +1,7 @@
-[assembly: WebActivator.PreApplicationStartMethod(typeof(SportsStore.UnitTests.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(SportsStore.UnitTests.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(SportStore.WebUI.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(SportStore.WebUI.App_Start.NinjectWebCommon), "Stop")]
 
-namespace SportsStore.UnitTests.App_Start
+namespace SportStore.WebUI.App_Start
 {
     using System;
     using System.Web;
@@ -53,6 +53,8 @@ namespace SportsStore.UnitTests.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+            System.Web.Mvc.DependencyResolver.SetResolver(new
+            Infrastructure.NinjectDependencyResolver(kernel));
+        }
     }
 }
